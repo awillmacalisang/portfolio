@@ -51,6 +51,12 @@ query MyQuery {
           title
         }
       }
+      aboutCompanyDetails {
+        companyJobDescription
+        companyName
+        companyYears
+        companyPosition
+      }
     }
     skillsSettings {
       skillList {

@@ -21,6 +21,7 @@ export default async function Home() {
   const socialInformationDetails = data?.globalSettings?.aboutMeSectionSettings?.socialInformationDetails || null;
   const aboutRightImage = data?.globalSettings?.aboutMeSectionSettings?.aboutRightImage?.node || null;
   const aboutLeftImage = data?.globalSettings?.aboutMeSectionSettings?.aboutLeftImage?.node || null;
+  const aboutCompanyDetails = data?.globalSettings?.aboutMeSectionSettings?.aboutCompanyDetails || null;
 
   /* Skills Section */
   const skillsHeading = data?.globalSettings?.skillsSettings?.skillsHeading || null;
@@ -55,6 +56,7 @@ export default async function Home() {
         socialInformationDetails={socialInformationDetails}
         aboutRightImage={aboutRightImage}
         aboutLeftImage={aboutLeftImage}
+        aboutCompanyDetails={aboutCompanyDetails}
       />
       <SkillsDetails
         skillsHeading={skillsHeading}

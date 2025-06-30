@@ -18,6 +18,7 @@ import {
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
+    CarouselDots
 } from "./ui/carousel"
 import { VscHome, VscArchive, VscAccount, VscSettingsGear } from 'react-icons/vsc';
 import { Card, CardContent } from './ui/card';
@@ -40,6 +41,12 @@ type Props = {
         mediaItemUrl: string;
         altText: string;
     } | null; // Optional left image
+    aboutCompanyDetails: {
+        companyYears: string | null;
+        companyName: string | null;
+        companyPosition: string | null;
+        companyJobDescription: string | null;
+    }[] | null;
 
 };
 
@@ -63,7 +70,7 @@ const items = [
     { icon: <VscSettingsGear size={18} />, label: 'Settings', onClick: () => alert('Settings!') },
 ];
 
-export default function AboutDetails({ aboutmainHeading, aboutsubHeading, aboutContent, strengthItems, aboutContactDetails, socialInformationDetails, aboutRightImage, aboutLeftImage }: Props) {
+export default function AboutDetails({ aboutmainHeading, aboutsubHeading, aboutContent, strengthItems, aboutContactDetails, socialInformationDetails, aboutRightImage, aboutLeftImage, aboutCompanyDetails }: Props) {
 
     return (
         <div className='mt-[-200px] relative'>
@@ -186,7 +193,10 @@ export default function AboutDetails({ aboutmainHeading, aboutsubHeading, aboutC
                             </AnimatedSection>
                         </div>
 
-                        <div className='mt-10 flex justify-center w-full'>
+                        <motion.div className='mt-10 flex justify-center w-full' initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ staggerChildren: 0.1, delay: 0.5 }}>
                             <Carousel
                                 opts={{
                                     align: "start",
@@ -194,7 +204,25 @@ export default function AboutDetails({ aboutmainHeading, aboutsubHeading, aboutC
                                 className="w-full"
                             >
                                 <CarouselContent>
-                                    {Array.from({ length: 5 }).map((_, index) => (
+                                    {aboutCompanyDetails?.map((items, index) => {
+                                        return (
+                                            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                                                <div className="p-1">
+                                                    <Card className='p-0'>
+                                                        <CardContent className="flex flex-col justify-center p-[32px]">
+                                                            <h3 className='text-xl font-semibold'>{items.companyName}</h3>
+                                                            <div className='flex flex-row gap-1 mb-[24px]'>
+                                                                <p className='text-base font-normal'>{items.companyPosition},</p>
+                                                                <p className='text-base font-normal'>{items.companyYears}</p>
+                                                            </div>
+                                                            <p className='text-base font-normal'>{items.companyJobDescription}</p>
+                                                        </CardContent>
+                                                    </Card>
+                                                </div>
+                                            </CarouselItem>
+                                        );
+                                    })}
+                                    {/* {Array.from({ length: 5 }).map((_, index) => (
                                         <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                                             <div className="p-1">
                                                 <Card>
@@ -204,13 +232,14 @@ export default function AboutDetails({ aboutmainHeading, aboutsubHeading, aboutC
                                                 </Card>
                                             </div>
                                         </CarouselItem>
-                                    ))}
+                                    ))} */}
                                 </CarouselContent>
                                 <CarouselPrevious />
                                 <CarouselNext />
+                                <CarouselDots />
                             </Carousel>
 
-                        </div>
+                        </motion.div>
 
                     </div>
                 </div>

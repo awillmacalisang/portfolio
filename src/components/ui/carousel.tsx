@@ -185,18 +185,21 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full",
+        "absolute size-8 rounded-full border-0 text-black bg-transparent hover:bg-transparent",
         orientation === "horizontal"
-          ? "top-1/2 -left-12 -translate-y-1/2"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "bottom-[-15px] right-[50px]"
+          : "-bottom-[-15px] right-[50px] rotate-90",
         className
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft />
-      <span className="sr-only">Previous slide</span>
+      <svg className="w-[30px] h-[32px]" width="34" height="16" viewBox="0 0 34 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.25 14.25L2 8M2 8L8.25 1.75M2 8H32" stroke="#10141E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+
+      <span className="sr-only text-black">Previous slide</span>
     </Button>
   )
 }
@@ -215,21 +218,69 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full",
+        "absolute size-8 rounded-full border-0 text-black bg-transparent hover:bg-transparent",
         orientation === "horizontal"
-          ? "top-1/2 -right-12 -translate-y-1/2"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "bottom-[-15px] right-[0px]"
+          : "bottom-[-15px] right-[0px] rotate-90",
         className
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight />
+      <svg width="34" height="16" viewBox="0 0 34 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M25.75 1.75L32 8M32 8L25.75 14.25M32 8H2" stroke="#10141E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+
       <span className="sr-only">Next slide</span>
     </Button>
   )
 }
+
+function CarouselDots() {
+  const { api } = useCarousel()
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([])
+
+  const onSelect = React.useCallback(() => {
+    if (!api) return
+    setSelectedIndex(api.selectedScrollSnap())
+  }, [api])
+
+  React.useEffect(() => {
+    if (!api) return
+
+    setScrollSnaps(api.scrollSnapList())
+    onSelect()
+
+    api.on("select", onSelect)
+    api.on("reInit", () => {
+      setScrollSnaps(api.scrollSnapList())
+      onSelect()
+    })
+
+    return () => {
+      api.off("select", onSelect)
+    }
+  }, [api, onSelect])
+
+  return (
+    <div className="mt-4 flex justify-start gap-2">
+      {scrollSnaps.map((_, index) => (
+        <button
+          key={index}
+          onClick={() => api?.scrollTo(index)}
+          className={cn(
+            "h-2 w-2 rounded-full transition-colors",
+            index === selectedIndex ? "bg-black" : "bg-gray-400"
+          )}
+          aria-label={`Go to slide ${index + 1}`}
+        />
+      ))}
+    </div>
+  )
+}
+
 
 export {
   type CarouselApi,
@@ -238,4 +289,5 @@ export {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
+  CarouselDots,
 }

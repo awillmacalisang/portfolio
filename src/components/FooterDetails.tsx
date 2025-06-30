@@ -14,21 +14,32 @@ export default function FooterDetails() {
     return (
         <div>
             <motion.footer
-                className="py-4 px-4 border-t bg-muted/30"
+                className="py-[24px] px-[24] bg-[#030712]"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <div className="container mx-auto text-center">
+                <div className="container mx-auto text-center mb-[24px]">
                     <motion.p
-                        className="text-muted-foreground"
+                        className="text-white font-[poppins] text-[72px] font-extrabold uppercase"
                         initial={{ y: 20, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
                     >
-                        © {year} Awill Dev. All rights reserved.
+                        AWILL JAY <span className='font-[poppins] text-[72px] font-extrabold uppercase text-transparent stroke-white'>MACALISANG</span>
+                    </motion.p>
+                </div>
+                <div className="container mx-auto text-center border-t border-white pt-[33px]">
+                    <motion.p
+                        className="text-white uppercase"
+                        initial={{ y: 20, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        © {year} Awill. All rights reserved. | <a href="#" className='underline'>REM WAS HERE</a>
                     </motion.p>
                 </div>
             </motion.footer>
