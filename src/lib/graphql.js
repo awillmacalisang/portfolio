@@ -23,19 +23,11 @@ query MyQuery {
       }
     }
     aboutMeSectionSettings {
-      aboutContactDetails {
-        detailIcon
-        detailName
-      }
       aboutContent
       aboutMainHeading
       aboutSubHeading
       aboutStrengthItems {
         strengthLabel
-      }
-      socialInformationDetails {
-        socialIcon
-        socialLink
       }
         aboutLeftImage {
         node {

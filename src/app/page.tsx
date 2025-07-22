@@ -17,8 +17,6 @@ export default async function Home() {
   const aboutsubHeading = data?.globalSettings?.aboutMeSectionSettings?.aboutSubHeading || null;
   const aboutContent = data?.globalSettings?.aboutMeSectionSettings?.aboutContent || null;
   const strengthItems = data?.globalSettings?.aboutMeSectionSettings?.aboutStrengthItems || null;
-  const aboutContactDetails = data?.globalSettings?.aboutMeSectionSettings?.aboutContactDetails || null;
-  const socialInformationDetails = data?.globalSettings?.aboutMeSectionSettings?.socialInformationDetails || null;
   const aboutRightImage = data?.globalSettings?.aboutMeSectionSettings?.aboutRightImage?.node || null;
   const aboutLeftImage = data?.globalSettings?.aboutMeSectionSettings?.aboutLeftImage?.node || null;
   const aboutCompanyDetails = data?.globalSettings?.aboutMeSectionSettings?.aboutCompanyDetails || null;
@@ -52,8 +50,6 @@ export default async function Home() {
         aboutsubHeading={aboutsubHeading}
         aboutContent={aboutContent}
         strengthItems={strengthItems}
-        aboutContactDetails={aboutContactDetails}
-        socialInformationDetails={socialInformationDetails}
         aboutRightImage={aboutRightImage}
         aboutLeftImage={aboutLeftImage}
         aboutCompanyDetails={aboutCompanyDetails}

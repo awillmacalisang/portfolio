@@ -4,8 +4,7 @@
 import { motion } from 'framer-motion';
 import { AnimatedSection } from './AnimatedSection';
 import { AnimatedBadge } from './AnimatedBadge';
-import { Mail, MapPin, Phone, ExternalLink, Code, Database, Globe, Smartphone } from "lucide-react"
-import { FaGithub, FaLinkedin } from "react-icons/fa"; // FontAwesome icons for GitHub and LinkedIn
+import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaEnvelope } from "react-icons/fa"; // FontAwesome icons for GitHub and LinkedIn
 import { Button } from './ui/button';
 import Link from "next/link"
 import React from 'react';
@@ -20,7 +19,6 @@ import {
     CarouselPrevious,
     CarouselDots
 } from "./ui/carousel"
-import { VscHome, VscArchive, VscAccount, VscSettingsGear } from 'react-icons/vsc';
 import { Card, CardContent } from './ui/card';
 
 
@@ -31,8 +29,6 @@ type Props = {
     aboutsubHeading: string | null;
     aboutContent: string | null;
     strengthItems: { strengthLabel: string }[] | null;
-    aboutContactDetails: { detailIcon: string, detailName: string }[] | null;
-    socialInformationDetails: { socialLink: string, socialIcon: string }[] | null;
     aboutRightImage: {
         mediaItemUrl: string;
         altText: string;
@@ -50,27 +46,15 @@ type Props = {
 
 };
 
-const iconMap: { [key: string]: React.ElementType } = {
-    Mail,
-    Phone,
-    MapPin,
-    // Add all expected icons here
-};
-
-const socialIconMap: { [key: string]: React.ElementType } = {
-    github: FaGithub,     // lowercase keys to match your example
-    linkedin: FaLinkedin,
-    // Add other icons as needed
-};
 
 const items = [
-    { icon: <VscHome size={18} />, label: 'Home', onClick: () => alert('Home!') },
-    { icon: <VscArchive size={18} />, label: 'Archive', onClick: () => alert('Archive!') },
-    { icon: <VscAccount size={18} />, label: 'Profile', onClick: () => alert('Profile!') },
-    { icon: <VscSettingsGear size={18} />, label: 'Settings', onClick: () => alert('Settings!') },
+    { icon: <FaFacebook  size={18} />, label: 'Facebook', onClick: () => window.open('https://facebook.com/awilljaymacalisang', '_blank'), },
+    { icon: <FaGithub  size={18} />, label: 'Github', onClick: () => window.open('https://github.com/awillmacalisang', '_blank'), },
+    { icon: <FaLinkedin size={18} />, label: 'LinkedIn', onClick: () => window.open('https://linkedin.com/in/awill-jay-macalisang-8a2785240', '_blank'), },
+    { icon: <FaEnvelope size={18} />, label: 'Email', onClick: () => window.open('mailto:macalisang.awilljay.com'), },
 ];
 
-export default function AboutDetails({ aboutmainHeading, aboutsubHeading, aboutContent, strengthItems, aboutContactDetails, socialInformationDetails, aboutRightImage, aboutLeftImage, aboutCompanyDetails }: Props) {
+export default function AboutDetails({ aboutmainHeading, aboutsubHeading, aboutContent, strengthItems, aboutRightImage, aboutLeftImage, aboutCompanyDetails }: Props) {
 
     return (
         <div className='mt-[-200px] relative'>
@@ -139,42 +123,6 @@ export default function AboutDetails({ aboutmainHeading, aboutsubHeading, aboutC
                                     whileInView="visible"
                                     viewport={{ once: true }}
                                 >
-                                    {aboutContactDetails?.map((item, index) => {
-                                        const Icon = iconMap[item.detailIcon]; // Look up the component
-
-                                        return (
-                                            <motion.div
-                                                key={item.detailName}
-                                                className="flex items-center gap-3 text-primary"
-                                                whileHover={{ x: 10, transition: { duration: 0.2 } }}
-                                            >
-                                                {Icon && <Icon className="h-5 w-5 text-primary" />} {/* Render only if found */}
-                                                <span>{item.detailName}</span>
-                                            </motion.div>
-                                        );
-                                    })}
-
-
-
-                                    <motion.div className="flex gap-4 pt-4">
-
-                                        {socialInformationDetails?.map((items, index) => {
-                                            const Icons = socialIconMap[items.socialIcon]; // normalize key 
-
-                                            console.log('Icons:', Icons, 'items.socialIcon:', items.socialIcon); // Debugging line
-
-                                            return (
-                                                <motion.div key={index} whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
-                                                    <Button variant="outline" size="icon" asChild>
-                                                        <Link href={items.socialLink} target="_blank">
-                                                            {Icons && <Icons className="h-4 w-4 text-primary" />}
-                                                        </Link>
-                                                    </Button>
-                                                </motion.div>
-                                            );
-                                        })}
-                                    </motion.div>
-
                                     <motion.div
                                         className="flex flex-wrap gap-2"
                                         initial={{ opacity: 0 }}
