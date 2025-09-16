@@ -57,7 +57,7 @@ const items = [
 export default function AboutDetails({ aboutmainHeading, aboutsubHeading, aboutContent, strengthItems, aboutRightImage, aboutLeftImage, aboutCompanyDetails }: Props) {
 
     return (
-        <div className='mt-[-200px] relative'>
+        <div className='mt-[-200px] relative shadow-[0px_100px_80px_0px_rgba(0,0,0,0.06)]'>
             <section id="about" className="py-16 px-[64px] relative bg-white">
                 <div className="container mx-auto z-200 relative">
                     <div className="mx-auto">

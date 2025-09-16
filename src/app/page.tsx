@@ -5,6 +5,8 @@ import AboutDetails from '../components/AboutDetails';
 import SkillsDetails from '../components/SkillsDetails';
 import ProjectDetails from '../components/ProjectDetails';
 import BannerDetails from '@/components/BannerDetails';
+import { Contact } from 'lucide-react';
+import ContactDetails from '@/components/ContactDetails';
 
 export default async function Home() {
   const data = await getPageAndSettings();
@@ -24,12 +26,25 @@ export default async function Home() {
   /* Skills Section */
   const skillsHeading = data?.globalSettings?.skillsSettings?.skillsHeading || null;
   const skillList = data?.globalSettings?.skillsSettings?.skillList || null;
+  const skillsSubheading = data?.globalSettings?.skillsSettings?.skillsSubheading || null;
+  const skillsDescription = data?.globalSettings?.skillsSettings?.skillsDescription || null;
 
   /* Banner Section */
   const typingTexts = data?.globalSettings?.bannerSettings?.typingItem || null;
   const bannerImage = data?.globalSettings?.bannerSettings?.bannerImage?.node || null;
   const bannerContent = data?.globalSettings?.bannerSettings?.bannerContent || null;
   const bannerHeading = data?.globalSettings?.bannerSettings?.bannerHeadingTitle || null;
+
+  /* Project Section */
+
+  const projectHeading = data?.globalSettings?.projectsSettings?.projectHeading || null;
+  const projectDescription = data?.globalSettings?.projectsSettings?.projectDescription || null;
+  const projectDetails = data?.globalSettings?.projectsSettings?.projectDetails || null;
+
+  /* Testimonial Section */
+  const testimonialFields = data?.globalSettings?.testimonialSettings?.testimonialFields || null;
+  
+
 
 
   return (
@@ -57,8 +72,17 @@ export default async function Home() {
       <SkillsDetails
         skillsHeading={skillsHeading}
         skillList={skillList}
+        skillsSubheading={skillsSubheading}
+        skillsDescription={skillsDescription}
       />
-      <ProjectDetails />
+      <ProjectDetails
+        projectHeading={projectHeading}
+        projectDescription={projectDescription}
+        projectDetails={projectDetails}
+      />
+      <ContactDetails 
+        testimonialFields={testimonialFields}
+      />
       <FooterDetails />
     </>
 

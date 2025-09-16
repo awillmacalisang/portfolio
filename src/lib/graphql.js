@@ -52,13 +52,14 @@ query MyQuery {
     }
     skillsSettings {
       skillList {
-        skillIcon
         skillsetHeading
         skillTitleList {
           skillsTitle
         }
       }
       skillsHeading
+      skillsSubheading
+      skillsDescription
     }
       bannerSettings {
       bannerContent
@@ -73,6 +74,31 @@ query MyQuery {
         typingTitle
       }
     }
+    testimonialSettings  {
+      testimonialFields {
+        companyName
+        fullName
+        position
+        testimonialContent
+      }
+    }
+    projectsSettings {
+      projectHeading
+      projectDescription
+      projectDetails {
+        projectLink
+        projectShortDescription
+        projectTitle
+        projectImage {
+          node {
+            altText
+            slug
+            mediaItemUrl
+            title
+          }
+        }
+      }
+    }  
   }
 }
   `;

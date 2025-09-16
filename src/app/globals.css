@@ -45,7 +45,7 @@
   --color-sidebar-accent-foreground: hsl(240 4.8% 95.9%);
   --color-sidebar-border: hsl(240 3.7% 15.9%);
   --color-sidebar-ring: hsl(217.2 91.2% 59.8%);
-
+  --my-shadow: 0px 100px 80px 0px rgba(0, 0, 0, 0.06);
 }
 
 body {
@@ -58,6 +58,80 @@ body {
   -webkit-text-stroke: 1px white;
   color: transparent;
 }
+
+.rfm-marquee-container {
+    height: 100%;
+    min-height: 814px;
+    width: 250px !important;
+    position: relative;
+}
+
+/* .rfm-marquee-container::after {
+  content: "";
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    z-index: 10;
+    background: linear-gradient(360deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 5%, rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.9) 15%, #FFFFFF 50%, rgba(255, 255, 255, 0.9) 85%, rgba(255, 255, 255, 0.6) 90%, rgba(255, 255, 255, 0.3) 95%, rgba(255, 255, 255, 0) 100%);
+} */
+
+.marquee-cover {
+    position: absolute;
+    left: 0%;
+    top: 34%;
+    right: 0%;
+    bottom: 0%;
+    z-index: 10;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 1)), linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 30%);
+}
+
+.marquee-cover-bottom {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    bottom: 34%;
+    z-index: 10;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 1)), linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 30%);
+}
+
+.rfm-marquee-container .rfm-marquee .rfm-initial-child-container {
+  gap: 10px !important;
+}
+
+.testimonial-section button[data-slot="carousel-previous"] svg {
+  width: 35px !important; 
+}
+
+.social-container {
+  background: linear-gradient(91.1deg, #5D4024 21.36%, #C3864C 100%);
+}
+
+.social-container div[aria-label="Application dock"] {
+  position: relative;
+  height: 100%;
+  padding: 0px;
+}
+
+.testimonial-section button[data-slot="carousel-next"] svg {
+  width: 35px !important;
+}
+
+.testimonial-section div[data-slot="carousel-content"] {
+  height: 100%;
+}
+
+.testimonial-section .mt-4.flex.justify-start.gap-2 {
+  margin-top: 0 !important;
+}
+
+
+
+/* .rfm-marquee-container .rfm-marquee:last-child {
+    display: none !important;
+} */
 
 @layer utilities {
   .text-balance {

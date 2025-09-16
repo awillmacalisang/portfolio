@@ -30,10 +30,6 @@ type Props = {
 
 
 
-
-
-
-
 export default function BannerDetails({ bannerHeading, bannerContent, bannerImage, typingTexts }: Props) {
     const typingTextData = typingTexts?.map(item => item.typingTitle) || [];
 
